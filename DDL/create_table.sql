@@ -286,6 +286,7 @@ CREATE TABLE `tbl_report` (
 -- 4. 핵심 트랜잭션 및 최종 테이블 (레벨 3+ 의존성)
 CREATE TABLE `tbl_pickup_history` (
 	`pickup_code`	INT PRIMARY KEY AUTO_INCREMENT	NOT NULL	COMMENT '픽업 코드',
+    `product_nm` VARCHAR(50) NOT NULL   COMMENT '물품의 이름',
 	`pickup_addr`	VARCHAR(200)	NOT NULL	COMMENT '판매자가 물품을 전달 할 주소',
 	`shipping_addr`	VARCHAR(200)	NOT NULL	COMMENT '구매자가 물품을 전달 받을 주소',
 	`request_dt`	DATE	NOT NULL	COMMENT '픽업을 요청한 일시',
@@ -314,6 +315,10 @@ CREATE TABLE `tbl_pickup_history` (
 				REFERENCES tbl_common_code(detail_code)
 
 );
+
+/*
+alter table tbl_pickup_history add column product_nm varchar(50);
+*/
 
 CREATE TABLE `tbl_driver_report` (
 	`report_code`	INT	NOT NULL	COMMENT '신고 코드(참조)',
