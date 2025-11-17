@@ -13,7 +13,10 @@ INSERT INTO `tbl_user` (`user_id`, `user_pw`, `user_nm`, `user_phnum`, `user_ema
 ('user007', 'hashed_pw_007', '윤도현', '010-2345-6789', 'yundh@example.com', '1975-04-22', 'M', NOW(), NULL),
 ('user008', 'hashed_pw_008', '한지민', '010-3456-7890', 'hanjm@example.com', '1998-12-05', 'F', NOW(), NULL),
 ('user009', 'hashed_pw_009', '신동엽', '010-4567-8901', 'shindy@example.com', '1980-06-30', 'M', NOW(), NULL),
-('user010', 'hashed_pw_010', '오나라', '010-5678-9012', 'onara@example.com', '1993-10-18', 'F', NOW(), NULL);
+('user010', 'hashed_pw_010', '오나라', '010-5678-9012', 'onara@example.com', '1993-10-18', 'F', NOW(), NULL),
+('user011', 'hashed_pw_011', '김나라', '010-5679-8912', 'kimnara@example.com', '1999-10-18', 'F', NOW(), NULL),
+('user012', 'hashed_pw_012', '박나라', '010-8759-4568', 'parknara@example.com', '1999-12-24', 'F', NOW(), NULL);
+
 
 
 INSERT INTO `tbl_serv_reg` (`region_nm`, `crtn_dt`, `mdfc_dt`) VALUES
@@ -295,19 +298,22 @@ INSERT INTO `tbl_report` (`content`, `type_code`, `user_code`, `admin_code`, `cr
 ('기타: 차량 내부가 청결하지 않았습니다.', 9, 10, 7, NOW(), NULL);
 
 
+select * from tbl_pickup_history;
+INSERT INTO `tbl_pickup_history` (`product_nm`,`pickup_addr`, `shipping_addr`, `request_dt`, `allotment_dt`, `complet_dt`, `user_code`, `region_code`, `driver_code`, `category_code`, `product_code`, `pay_code`, `stat_code`) VALUES
+('노스페이스 패딩','서울 강남구 역삼동 101호', '경기 성남시 분당구 정자동 502호', CURDATE() - INTERVAL 5 DAY, null, null, 1, 1, 1, 1, 4,11, 8), -- 의류/잡화
+('galaxy book pro','인천 연수구 송도동 203호', '부산 해운대구 우동 101동', CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, 2, 4, 5, 2, 5,12, 9), -- 가전/디지털
+('한강이 온다','대구 수성구 만촌동 305호', '대전 유성구 봉명동 404호', CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, CURDATE() - INTERVAL 1 DAY, 3, 6, 7, 3, 6,13, 10), -- 도서/문구
+('나이키 조던','광주 서구 치평동 507호', '울산 남구 달동 608호', CURDATE() - INTERVAL 2 DAY, CURDATE() - INTERVAL 1 DAY, CURDATE(), 4, 8, 9, 1, 7,14, 8), -- 의류/잡화
+('브리츠 cd플레이어 (블투연결가능)','서울 마포구 서교동 709호', '세종특별자치시 한솔동 810호', CURDATE() - INTERVAL 1 DAY, CURDATE() - INTERVAL 12 HOUR, CURDATE() - INTERVAL 6 HOUR, 5, 2, 2, 2, 4, 11,9), -- 가전/디지털
+('해커스토익 기출보카','경기 성남시 야탑동 111호', '서울 강남구 논현동 222호', CURDATE() - INTERVAL 10 DAY, CURDATE() - INTERVAL 9 DAY, CURDATE() - INTERVAL 8 DAY, 6, 3, 3, 3,5,12,10), -- 도서/문구
+('와이케이 스타 로고 리버시블 코듀로이 숏패딩','부산 기장군 일광면 333호', '인천 미추홀구 주안동 444호', CURDATE() - INTERVAL 7 DAY, NULL, NULL, 7, 5, 4, 1,6,13, 8), -- 의류/잡화
+('닌텐도 스위치 2','대전 서구 둔산동 555호', '대구 동구 신암동 666호', CURDATE() - INTERVAL 6 DAY, CURDATE() - INTERVAL 5 DAY, CURDATE() - INTERVAL 4 DAY, 8, 7, 6, 2,7,11,9), -- 가전/디지털
+('최태성의 한국사','울산 북구 호계동 777호', '광주 광산구 수완동 888호', CURDATE() - INTERVAL 5 DAY, CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, 9, 9, 8, 3,4,12, 10), -- 도서/문구
+('아식스x슈슈통 콜라보 스니커즈','세종시 고운동 999호', '서울 영등포구 여의도동 000호', CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, 10, 10, 10, 1,5,13,11),
+('나이키 알파플라이3','인천시 연수구 연수동 185호', '서울 서초구 서초동 125호', '2025-04-13', '2025-04-12', '2025-04-14', 12, 10, 10, 1,5,13,8),
+('나이키 AIR JORDAN Ⅴ 270mm','서울시 종로구 명륜동 212호', '서울 서초구 서초동 125호', CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, 12, 10, 10, 1,5,13,8),
+('나이키 우먼스 브이투케이 런 블랙 앤 메탈릭실버','인천시 남동구 구월동 185호', '서울 서초구 서초동 125호', '2024-09-12', '2024-09-11', '2024-09-13', 12, 10, 10, 1,5,13,8);
 
-
-INSERT INTO `tbl_pickup_history` (`pickup_addr`, `shipping_addr`, `request_dt`, `allotment_dt`, `complet_dt`, `user_code`, `region_code`, `driver_code`, `category_code`, `product_code`, `pay_code`, `stat_code`) VALUES
-('서울 강남구 역삼동 101호', '경기 성남시 분당구 정자동 502호', CURDATE() - INTERVAL 5 DAY, null, null, 1, 1, 1, 1, 4,11, 8), -- 의류/잡화
-('인천 연수구 송도동 203호', '부산 해운대구 우동 101동', CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, 2, 4, 5, 2, 5,12, 9), -- 가전/디지털
-('대구 수성구 만촌동 305호', '대전 유성구 봉명동 404호', CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, CURDATE() - INTERVAL 1 DAY, 3, 6, 7, 3, 6,13, 10), -- 도서/문구
-('광주 서구 치평동 507호', '울산 남구 달동 608호', CURDATE() - INTERVAL 2 DAY, CURDATE() - INTERVAL 1 DAY, CURDATE(), 4, 8, 9, 1, 7,14, 8), -- 의류/잡화
-('서울 마포구 서교동 709호', '세종특별자치시 한솔동 810호', CURDATE() - INTERVAL 1 DAY, CURDATE() - INTERVAL 12 HOUR, CURDATE() - INTERVAL 6 HOUR, 5, 2, 2, 2, 4, 11,9), -- 가전/디지털
-('경기 성남시 야탑동 111호', '서울 강남구 논현동 222호', CURDATE() - INTERVAL 10 DAY, CURDATE() - INTERVAL 9 DAY, CURDATE() - INTERVAL 8 DAY, 6, 3, 3, 3,5,12,10), -- 도서/문구
-('부산 기장군 일광면 333호', '인천 미추홀구 주안동 444호', CURDATE() - INTERVAL 7 DAY, NULL, NULL, 7, 5, 4, 1,6,13, 8), -- 의류/잡화
-('대전 서구 둔산동 555호', '대구 동구 신암동 666호', CURDATE() - INTERVAL 6 DAY, CURDATE() - INTERVAL 5 DAY, CURDATE() - INTERVAL 4 DAY, 8, 7, 6, 2,7,11,9), -- 가전/디지털
-('울산 북구 호계동 777호', '광주 광산구 수완동 888호', CURDATE() - INTERVAL 5 DAY, CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, 9, 9, 8, 3,4,12, 10), -- 도서/문구
-('세종시 고운동 999호', '서울 영등포구 여의도동 000호', CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, 10, 10, 10, 1,5,13,11); -- 의류/잡화
 
 
 INSERT INTO `tbl_driver_report` (`report_code`, `driver_code`) VALUES
@@ -385,4 +391,3 @@ INSERT INTO `tbl_refund` (`is_refund_completed`, `refund_completed_date`, `cance
 (1, NOW() - INTERVAL 4 DAY, 8, 9), -- 취소 8, 결제 9에 대한 환불 완료
 (1, NOW() - INTERVAL 10 DAY, 9, 10), -- 취소 9, 결제 10에 대한 환불 완료
 (0, NULL, 10, 6); -- 취소 10 (아직 승인 전) -> 결제 6 (이 결제는 미완료였으므로 환불 처리 자체가 대기일 수 있음)
-

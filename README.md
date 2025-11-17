@@ -51,7 +51,9 @@
 * [2. 개발 환경 및 기술 스택](#2-개발-환경-및-기술-스택)
 * [3. 프로젝트 구조](#3-프로젝트-구조)
 * [4. 프로젝트 산출물](#4-프로젝트-산출물)
-
+* [5. 테스트 케이스](#5-테스트-케이스)
+* [6. 성능 향상 테스트케이스](#6-성능-향상-테스트케이스)
+* [7. 프로젝트 회고](#7-프로젝트-회고)
 
 ---
 ## 1. 프로젝트 개요
@@ -80,6 +82,13 @@
 <br>
 
 ### 1-3. 유사 서비스와의 차별점
+<img src="./images/carrot.png" width="200" alt="DBMS"/>
+<br>
+<br>
+당근마켓의 장점은 중고거래 시 발생할 수 있는 금액 문제를 안전계좌를 통해 안전하게 관리하고, 거래가 완료되면 확실히 금액을 수령할 수 있는 시스템에 있습니다. 그러나 당근마켓의 안전계좌 시스템을 사용하지 않을 경우, 비밀번호 사기 등 금전적 위험이 발생할 수 있습니다.
+이에 비해 우리 서비스는 물품을 철저히 검증한 후 배송을 진행하기 때문에, 보다 신뢰할 수 있고 안정적인 중고거래 환경을 제공합니다.
+
+
 ---
 * 🛡️ 안전 강화: 수령-보관-인계 전 과정에서 고객에게 제품 사진 전송 및 이력(상태 확인 절차) 제공.
 * ✅ 공식 신뢰도: 공식적으로 보장된 플랫폼을 통해 낮은 신뢰도를 해결하고 보안성을 확보.
@@ -140,21 +149,23 @@
 ## **3. 프로젝트 구조**
 ```
 root/
+│── .gitignore
 │── README.md
+|── DATA/
+│   └── sample_data.sql
 │── DDL/
+│   └── create_table.sql
 │── DML/
-│   ├── facility/
-│   ├── payment/
-│   ├── post/
-│   ├── qna/
-│   ├── recruit/
-│   ├── report/
-│   ├── reservation/
-│   ├── users/
+│   ├── admin/
+│   ├── driver/
+│   ├── pickup/  
+│   └── user
 │── DOCS/
-│   ├── table_def/
-│   ├── testcase/
-│── TEST_QUERIES
+│   └── images/      
+│── TEST_QUERIES/           
+│   ├── INDEX/               
+│   ├── PROCEDURE/           
+│   └── TRIGGER/           
 ```
 <br>
 
@@ -176,27 +187,76 @@ root/
 
 ### 4-3. **WBS**
 <details><summary>WBS</summary>
-  <p align="center"><img src="./images/.png"></img></p>
+  <p align="center"><img src="./images/wbs.png"></img></p>
 </details>
 <br>
 
-### 4-4. **WBS**
-<details><summary>WBS</summary>
-  <p align="center"><img src="./images/.png"></img></p>
-</details>
-<br>
-
-### 4-5. **DB 모델링**
+### 4-4. **DB 모델링**
 <details><summary>ERD</summary>
-  <p align="center"><img src="./images/.png"></img></p>
+  <p align="center"><img src="./images/erdmodel.png"></img></p>
 </details>
 <br>
 
-### 4-6. **테이블 정의서**
+### 4-5. **테이블 정의서**
 <details><summary>테이블정의서</summary>
-  <p align="center"><img src="./images/.png"></img></p>
+  <p align="center"><img src="./images/table1.png"></img></p>
+  <p align="center"><img src="./images/table2.png"></img></p>
+  <p align="center"><img src="./images/table3.png"></img></p>
+  <p align="center"><img src="./images/table4.png"></img></p>
 </details>
 <br>
 
 ---
+
+## 5. 테스트 케이스
+
+### 5-1. 관리자
+<details><summary>관리자 시나리오</summary>
+  <p align="center"><img src="./images/admin.gif"></img></p>
+</details>
+<br>
+
+### 5-2. 회원
+<details><summary>회원 시나리오</summary>
+  <p align="center"><img src="./images/user.gif"></img></p>
+</details>
+<br>
+
+### 5-3. 배달기사
+<details><summary>배달기사 시나리오</summary>
+  <p align="center"><img src="./images/driver.gif"></img></p>
+</details>
+<br>
+
+### 5-4. 픽업
+<details><summary>픽업 시나리오</summary>
+  <p align="center"><img src="./images/pickup.gif"></img></p>
+</details>
+<br>
+
+---
+
+## 6. 성능 향상 테스트케이스
+<details><summary>INDEX</summary>
+  <p align="center"><img src="./images/driver.gif"></img></p>
+</details>
+
+<details><summary>PROCEDURE</summary>
+  <p align="center"><img src="./images/procedure.gif"></img></p>
+</details>
+
+* "환불 처리(refund_code = 8) 시, SP_ProcessRefund 프로시저를 도입하여 환불 승인(tbl_refund)과 취소 내역 동기화(tbl_pickup_cancellation_code)를 하나의 트랜잭션으로 묶어 처리했습니다.
+이를 통해 데이터 불일치 가능성을 원천 차단했으며, 애플리케이션과 데이터베이스 간의 통신 횟수를 줄여 관리자 페이지의 응답 속도와 안정성을 동시에 향상 시켰습니다.
+
+* 프로시저 도입 전에는 1. 환불 기록 상태 업데이트 2. 관련 취소 코드 조회 3. 취소 내역 상태 동기화를 통해 3회의 통신을 해야하지만 프로시저 도입 후에는 이 3단계를 DB 내부에서 처리하여 통신 횟수를 1회로 줄였습니다.
+
+<details><summary>TRIGGER</summary>
+  <p align="center"><img src="./images/trigger.gif"></img></p>
+</details>
+
+* trg_after_inquiry_ans_insert 트리거 도입으로, 관리자가 답변을 등록할 때 DB와 주고받는 통신횟수가 절반 줄어든다.
+
+
+## 7. 프로젝트 회고
+
 

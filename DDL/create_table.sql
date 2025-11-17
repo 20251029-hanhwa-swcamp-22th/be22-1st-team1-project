@@ -1,32 +1,32 @@
-DROP TABLE IF EXISTS `tbl_performance_data`;
-DROP TABLE IF EXISTS `tbl_pickup_stat`;
-DROP TABLE IF EXISTS `tbl_inquiry_ans`;
-DROP TABLE IF EXISTS `tbl_essential_terms`;
-DROP TABLE IF EXISTS `tbl_review_files`;
-DROP TABLE IF EXISTS `tbl_month_settle`;
-DROP TABLE IF EXISTS `tbl_refund`;
-DROP TABLE IF EXISTS `tbl_review`;
-DROP TABLE IF EXISTS `tbl_inquiry`;
-DROP TABLE IF EXISTS `tbl_pickup_cancellation_code`;
-DROP TABLE IF EXISTS `tbl_notice`;
-DROP TABLE IF EXISTS `tbl_payment`;
-DROP TABLE IF EXISTS `tbl_fuel_cost_mng`;
-DROP TABLE IF EXISTS `tbl_driver_sch`;
-DROP TABLE IF EXISTS `tbl_driver_report`;
-DROP TABLE IF EXISTS `tbl_notification_code`;
-DROP TABLE IF EXISTS `tbl_address`;
-DROP TABLE IF EXISTS `tbl_terms_version`;
-DROP TABLE IF EXISTS `tbl_pickup_history`;
-DROP TABLE IF EXISTS `tbl_driver`;
-DROP TABLE IF EXISTS `tbl_report`;
-DROP TABLE IF EXISTS `tbl_user`;
-DROP TABLE IF EXISTS `tbl_admin`;
-DROP TABLE IF EXISTS `tbl_serv_reg`;
-DROP TABLE IF EXISTS `tbl_admin_auth`;
-DROP TABLE IF EXISTS `tbl_terms`;
-DROP TABLE IF EXISTS `tbl_common_code`;
-DROP TABLE IF EXISTS `tbl_common_group`;
-DROP TABLE IF EXISTS `tbl_report_type`;
+DROP TABLE IF EXISTS tbl_performance_data;
+DROP TABLE IF EXISTS tbl_pickup_stat;
+DROP TABLE IF EXISTS tbl_inquiry_ans;
+DROP TABLE IF EXISTS tbl_essential_terms;
+DROP TABLE IF EXISTS tbl_review_files;
+DROP TABLE IF EXISTS tbl_month_settle;
+DROP TABLE IF EXISTS tbl_refund;
+DROP TABLE IF EXISTS tbl_review;
+DROP TABLE IF EXISTS tbl_inquiry;
+DROP TABLE IF EXISTS tbl_pickup_cancellation_code;
+DROP TABLE IF EXISTS tbl_notice;
+DROP TABLE IF EXISTS tbl_payment;
+DROP TABLE IF EXISTS tbl_fuel_cost_mng;
+DROP TABLE IF EXISTS tbl_driver_sch;
+DROP TABLE IF EXISTS tbl_driver_report;
+DROP TABLE IF EXISTS tbl_notification_code;
+DROP TABLE IF EXISTS tbl_address;
+DROP TABLE IF EXISTS tbl_terms_version;
+DROP TABLE IF EXISTS tbl_pickup_history;
+DROP TABLE IF EXISTS tbl_driver;
+DROP TABLE IF EXISTS tbl_report;
+DROP TABLE IF EXISTS tbl_user;
+DROP TABLE IF EXISTS tbl_admin;
+DROP TABLE IF EXISTS tbl_serv_reg;
+DROP TABLE IF EXISTS tbl_admin_auth;
+DROP TABLE IF EXISTS tbl_terms;
+DROP TABLE IF EXISTS tbl_common_code;
+DROP TABLE IF EXISTS tbl_common_group;
+DROP TABLE IF EXISTS tbl_report_type;
 
 
 -- 1. 코어 마스터 테이블 (참조가 거의 없는 테이블)
@@ -285,7 +285,9 @@ CREATE TABLE `tbl_report` (
 
 -- 4. 핵심 트랜잭션 및 최종 테이블 (레벨 3+ 의존성)
 CREATE TABLE `tbl_pickup_history` (
+    `product_nm` VARCHAR(50) NOT NULL   COMMENT '물품의 이름',
 	`pickup_code`	INT PRIMARY KEY AUTO_INCREMENT	NOT NULL	COMMENT '픽업 코드',
+    `product_nm` VARCHAR(50) NOT NULL   COMMENT '물품의 이름',
 	`pickup_addr`	VARCHAR(200)	NOT NULL	COMMENT '판매자가 물품을 전달 할 주소',
 	`shipping_addr`	VARCHAR(200)	NOT NULL	COMMENT '구매자가 물품을 전달 받을 주소',
 	`request_dt`	DATE	NOT NULL	COMMENT '픽업을 요청한 일시',
@@ -314,6 +316,10 @@ CREATE TABLE `tbl_pickup_history` (
 				REFERENCES tbl_common_code(detail_code)
 
 );
+
+/*
+alter table tbl_pickup_history add column product_nm varchar(50);
+*/
 
 CREATE TABLE `tbl_driver_report` (
 	`report_code`	INT	NOT NULL	COMMENT '신고 코드(참조)',
@@ -383,3 +389,4 @@ CREATE TABLE `tbl_review_files` (
 	FOREIGN KEY (review_code)
 				REFERENCES tbl_review(review_code)
 );
+
