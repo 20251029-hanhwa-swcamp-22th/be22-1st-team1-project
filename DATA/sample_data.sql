@@ -391,4 +391,3 @@ INSERT INTO `tbl_refund` (`is_refund_completed`, `refund_completed_date`, `cance
 (1, NOW() - INTERVAL 4 DAY, 8, 9), -- 취소 8, 결제 9에 대한 환불 완료
 (1, NOW() - INTERVAL 10 DAY, 9, 10), -- 취소 9, 결제 10에 대한 환불 완료
 (0, NULL, 10, 6); -- 취소 10 (아직 승인 전) -> 결제 6 (이 결제는 미완료였으므로 환불 처리 자체가 대기일 수 있음)
-
