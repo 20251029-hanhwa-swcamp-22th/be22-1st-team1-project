@@ -7,18 +7,12 @@ SELECT * FROM tbl_user;
 SELECT * FROM tbl_driver;
 SELECT * FROM tbl_serv_reg;
 
-INSERT INTO `tbl_user` (`user_id`, `user_pw`, `user_nm`, `user_phnum`, `user_email`, `user_birth`, `user_gen`, `crtn_dt`, `mdfc_dt`) VALUES
-('user011', 'hashed_pw_011', '김나라', '010-5679-8912', 'kimnara@example.com', '1999-10-18', 'F', NOW(), NULL),
-('user012', 'hashed_pw_012', '박나라', '010-8759-4568', 'parknara@example.com', '1999-12-24', 'F', NOW(), NULL);
-INSERT INTO `tbl_pickup_history` (`product_nm`,`pickup_addr`, `shipping_addr`, `request_dt`, `allotment_dt`, `complet_dt`, `user_code`, `region_code`, `driver_code`, `category_code`, `product_code`, `pay_code`, `stat_code`) VALUES
-('나이키 알파플라이3','인천시 연수구 연수동 185호', '서울 서초구 서초동 125호', '2025-04-13', '2025-04-12', '2025-04-14', 12, 10, 10, 1,5,13,8),
-('나이키 AIR JORDAN Ⅴ 270mm','서울시 종로구 명륜동 212호', '서울 서초구 서초동 125호', CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, 12, 10, 10, 1,5,13,8),
-('나이키 우먼스 브이투케이 런 블랙 앤 메탈릭실버','인천시 남동구 구월동 185호', '서울 서초구 서초동 125호', '2024-09-12', '2024-09-11', '2024-09-13', 12, 10, 10, 1,5,13,8),
-('아르마니 코트','서울시 서초구 서초동 185호', '서울 영등포구 여의도동 125호', CURDATE() - INTERVAL 4 DAY, NULL, NULL, 11, 10, 10, 1,5,13,8);
 
 /*
 김나라씨의 아르마니 코트 픽업 요청
 */
+INSERT INTO `tbl_pickup_history` (`product_nm`,`pickup_addr`, `shipping_addr`, `request_dt`, `allotment_dt`, `complet_dt`, `user_code`, `region_code`, `driver_code`, `category_code`, `product_code`, `pay_code`, `stat_code`) VALUES
+('아르마니 코트','서울시 서초구 서초동 185호', '서울 영등포구 여의도동 125호', CURDATE() - INTERVAL 4 DAY, NULL, NULL, 11, 10, 10, 1,5,13,8);
 
 SELECT * FROM tbl_pickup_history WHERE pickup_code = 14;
 
