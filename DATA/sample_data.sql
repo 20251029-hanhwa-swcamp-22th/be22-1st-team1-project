@@ -13,7 +13,10 @@ INSERT INTO `tbl_user` (`user_id`, `user_pw`, `user_nm`, `user_phnum`, `user_ema
 ('user007', 'hashed_pw_007', '윤도현', '010-2345-6789', 'yundh@example.com', '1975-04-22', 'M', NOW(), NULL),
 ('user008', 'hashed_pw_008', '한지민', '010-3456-7890', 'hanjm@example.com', '1998-12-05', 'F', NOW(), NULL),
 ('user009', 'hashed_pw_009', '신동엽', '010-4567-8901', 'shindy@example.com', '1980-06-30', 'M', NOW(), NULL),
-('user010', 'hashed_pw_010', '오나라', '010-5678-9012', 'onara@example.com', '1993-10-18', 'F', NOW(), NULL);
+('user010', 'hashed_pw_010', '오나라', '010-5678-9012', 'onara@example.com', '1993-10-18', 'F', NOW(), NULL),
+('user011', 'hashed_pw_011', '김나라', '010-5679-8912', 'kimnara@example.com', '1999-10-18', 'F', NOW(), NULL),
+('user012', 'hashed_pw_012', '박나라', '010-8759-4568', 'parknara@example.com', '1999-12-24', 'F', NOW(), NULL);
+
 
 
 INSERT INTO `tbl_serv_reg` (`region_nm`, `crtn_dt`, `mdfc_dt`) VALUES
@@ -306,7 +309,11 @@ INSERT INTO `tbl_pickup_history` (`product_nm`,`pickup_addr`, `shipping_addr`, `
 ('와이케이 스타 로고 리버시블 코듀로이 숏패딩','부산 기장군 일광면 333호', '인천 미추홀구 주안동 444호', CURDATE() - INTERVAL 7 DAY, NULL, NULL, 7, 5, 4, 1,6,13, 8), -- 의류/잡화
 ('닌텐도 스위치 2','대전 서구 둔산동 555호', '대구 동구 신암동 666호', CURDATE() - INTERVAL 6 DAY, CURDATE() - INTERVAL 5 DAY, CURDATE() - INTERVAL 4 DAY, 8, 7, 6, 2,7,11,9), -- 가전/디지털
 ('최태성의 한국사','울산 북구 호계동 777호', '광주 광산구 수완동 888호', CURDATE() - INTERVAL 5 DAY, CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, 9, 9, 8, 3,4,12, 10), -- 도서/문구
-('아식스x슈슈통 콜라보 스니커즈','세종시 고운동 999호', '서울 영등포구 여의도동 000호', CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, 10, 10, 10, 1,5,13,11); -- 의류/잡화
+('아식스x슈슈통 콜라보 스니커즈','세종시 고운동 999호', '서울 영등포구 여의도동 000호', CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, 10, 10, 10, 1,5,13,11),
+('나이키 알파플라이3','인천시 연수구 연수동 185호', '서울 서초구 서초동 125호', '2025-04-13', '2025-04-12', '2025-04-14', 12, 10, 10, 1,5,13,8),
+('나이키 AIR JORDAN Ⅴ 270mm','서울시 종로구 명륜동 212호', '서울 서초구 서초동 125호', CURDATE() - INTERVAL 4 DAY, CURDATE() - INTERVAL 3 DAY, CURDATE() - INTERVAL 2 DAY, 12, 10, 10, 1,5,13,8),
+('나이키 우먼스 브이투케이 런 블랙 앤 메탈릭실버','인천시 남동구 구월동 185호', '서울 서초구 서초동 125호', '2024-09-12', '2024-09-11', '2024-09-13', 12, 10, 10, 1,5,13,8);
+
 
 
 INSERT INTO `tbl_driver_report` (`report_code`, `driver_code`) VALUES
