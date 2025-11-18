@@ -22,7 +22,7 @@ BEGIN
 
     -- 2. 관련 취소 내역 상태 동기화 (JOIN을 사용하여 효율적으로 UPDATE)
     UPDATE tbl_pickup_cancellation_code tpc
-    JOIN tbl_refund tr ON tpc.cancellation_code = tr.cancellation_code
+    JOIN tbl_refund tr ON(tpc.cancellation_code = tr.cancellation_code)
     SET tpc.is_refunded = 1
     WHERE tr.refund_code = p_refund_code;
 
@@ -33,7 +33,7 @@ BEGIN
         SELECT 'Refund processing failed and rolled back.' AS Result;
     ELSE
         COMMIT;
-        SELECT 'Refund processing completed successfully.' AS Result;
+        SELECT CONCAT('Refund code', p_refund_code, 'processing successfully.') AS Result;
     END IF;
 
 END //
@@ -49,7 +49,7 @@ SELECT
     tpc.is_refunded
 FROM tbl_refund tr
 JOIN tbl_pickup_cancellation_code tpc
-    ON tr.cancellation_code = tpc.cancellation_code
+    ON(tr.cancellation_code = tpc.cancellation_code)
 WHERE tr.refund_code = 8;
 -- 예상 결과: 0, 0
 
@@ -63,7 +63,6 @@ SELECT
     tpc.is_refunded
 FROM tbl_refund tr
 JOIN tbl_pickup_cancellation_code tpc
-    ON tr.cancellation_code = tpc.cancellation_code
+    ON(tr.cancellation_code = tpc.cancellation_code)
 WHERE tr.refund_code = 8;
 -- 예상 결과: 1, 1
--- 김태형
