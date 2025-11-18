@@ -33,4 +33,3 @@ VALUES
 -- 3. 최종 상태 확인 (자동 업데이트 확인)
 SELECT inquiry_stat, crtn_dt, mdfc_dt FROM tbl_inquiry WHERE inquiry_code = 18;
 -- 예상 결과: '답변 완료'로 변경됨
--- 김태형

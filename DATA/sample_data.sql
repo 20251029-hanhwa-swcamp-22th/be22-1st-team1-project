@@ -1,8 +1,3 @@
-
-
-
-
-
 INSERT INTO `tbl_user` (`user_id`, `user_pw`, `user_nm`, `user_phnum`, `user_email`, `user_birth`, `user_gen`, `crtn_dt`, `mdfc_dt`) VALUES
 ('user001', 'hashed_pw_001', '김철수', '010-1111-2222', 'kimcs@example.com', '1990-05-15', 'M', NOW(), NULL),
 ('user002', 'hashed_pw_002', '이영희', '010-3333-4444', 'leeyh@example.com', '1995-11-20', 'F', NOW(), NULL),
